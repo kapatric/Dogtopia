@@ -1,16 +1,27 @@
-import axios from "axios";
+import mongoose from "../db/connection.js";
+import Breed from "../models/Breed.js";
+import breeds from "./breeds.json" assert {type: "json"}
 
-const options = {
-  method: 'GET',
-  url: 'https://ultimate-tennis1.p.rapidapi.com/rankings/atp/singles/25/current',
-  headers: {
-    'X-RapidAPI-Key': '3a08616c39mshc4f003a6ecaf137p13c3dfjsn3d1927609e09',
-    'X-RapidAPI-Host': 'ultimate-tennis1.p.rapidapi.com'
-  }
-};
 
-axios.request(options).then(function (response) {
-	console.log(response.data);
-}).catch(function (error) {
-	console.error(error);
-});
+const breedData = breeds.map(item => {
+  const breed = {}
+  breed.breed = item.breed
+  breed.origin = item.origin
+  breed.url = item.url
+  breed.img = item.img
+  breed.height = item.meta.height
+  breed.weight = item.meta.weight
+  breed.coat = item.meta.coat
+  return breed
+})
+
+
+
+Breed
+  .deleteMany({})
+  .then(() => Breed.create(breedData))
+  .then(() => console.log("Breed seeded!"))
+  .then(() => mongoose.close())
+  .catch(error => console.error('Error', error))
+
+
