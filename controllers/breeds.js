@@ -25,6 +25,21 @@ export const getBreed = async(req, res) => {
 }
 }
 
+export const getBreedName = async(req, res) => {
+  try {
+    const { name } = req.params;
+    console.log(name)
+    const breed = await Breed.find({ breed: name })
+    if (breed) {
+      return res.json(breed)
+    }
+    res.status(400).json({ message: "Breed not Found" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+}
+}
+
 export const createBreed = async (req, res) => {
   try {
     const breed = new Breed(req.body)
