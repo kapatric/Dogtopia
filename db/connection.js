@@ -6,7 +6,7 @@ mongoose.set("returnOriginal", false);
 mongoose
   .connect("mongodb://127.0.0.1:27017/Dogtopia")
   .catch((error) => {
-    console.log(`Error connection go MongoDB: ${err.message}`);
+    console.log(`Error connection go MongoDB: ${error.message}`);
   });
 
 mongoose.connection.on('disconnected', () => {
