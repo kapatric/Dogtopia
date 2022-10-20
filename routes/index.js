@@ -1,4 +1,4 @@
-import { application, Router } from 'express'
+import { Router } from 'express'
 import Breed from '../models/Breed.js'
 import breedsRoutes from "./breeds.js"
 

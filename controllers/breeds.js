@@ -2,7 +2,7 @@ import Breed from "../models/Breed.js"
 
 export const getBreeds = async (req, res) => {
   try {
-    const breeds = await getBreed.find();
+    const breeds = await Breed.find();
     res.json(breeds)
   } catch (error) {
     console.error(error);
