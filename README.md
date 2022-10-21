@@ -6,7 +6,7 @@
 - Using an application like Postman one can 
 
 ### Code Snippets ###
-
+```
 const options = {
 	method: 'GET',
 	headers: {
@@ -19,6 +19,7 @@ fetch('https://dog-breeds2.p.rapidapi.com/dog_breeds/breed/Cretan%20Hound', opti
 	.then(response => response.json())
 	.then(response => console.log(response))
 	.catch(err => console.error(err));
+  ```
 
 ### Example Response ###
 
