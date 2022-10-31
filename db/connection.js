@@ -3,8 +3,10 @@ import chalk from "chalk";
 
 mongoose.set("returnOriginal", false);
 
+const connectionString = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/Dogtopia"
+
 mongoose
-  .connect("mongodb://127.0.0.1:27017/Dogtopia")
+  .connect(connectionString)
   .catch((error) => {
     console.log(`Error connection go MongoDB: ${error.message}`);
   });
