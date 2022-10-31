@@ -1,4 +1,4 @@
-import mongoose from "../db/connection.js";
+import db from "../db/connection.js";
 import Breed from "../models/Breed.js";
 import breeds from "./breeds.json" assert {type: "json"}
 
@@ -16,12 +16,20 @@ const breedData = breeds.map(item => {
 })
 
 
+async function init(){
+  await db.dropDatabase()
+  await Breed.create(breedData)
+  console.log("Breed seeded!")
+  await db.close()
+}
 
-Breed
-  .deleteMany({})
-  .then(() => Breed.create(breedData))
-  .then(() => console.log("Breed seeded!"))
-  .then(() => mongoose.close())
-  .catch(error => console.error('Error', error))
+init()
+
+// Breed
+//   .deleteMany({})
+//   .then(() => Breed.create(breedData))
+//   .then(() => console.log("Breed seeded!"))
+//   .then(() => mongoose.close())
+//   .catch(error => console.error('Error', error))
 
 
